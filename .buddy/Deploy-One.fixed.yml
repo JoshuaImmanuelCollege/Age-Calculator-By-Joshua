@@ -1,0 +1,18 @@
+- pipeline: deploy_one
+  name: Deploy-One
+  refs:
+  - refs/heads/main
+  events:
+  - type: PUSH
+  fail_on_prepare_env_warning: true
+  resources: NANO
+  arch: ARM64
+  actions:
+  - action: netlify deploy --dir=. --prod
+    type: NETLIFY
+    version: 20
+    site_id: age-calculator-netlify-123
+    integration: netlify
+    execute_commands:
+    - netlify deploy --dir=. --prod
+    shell: BASH
